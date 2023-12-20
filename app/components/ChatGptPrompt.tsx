@@ -385,80 +385,6 @@ const ChatGptPrompt: React.FC = () => {
 
 
 
-// const generateArticleForTitle = async (selectedTitle: string) => {
-//   try {
-//     if (!selectedTitle.trim()) {
-//       return;
-//     }
-
-//     const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
-//     const openaiEndpoint = "https://api.openai.com/v1/completions";
-
-//     const prompts = [
-//       `write the content for article without conclusion on Introduction of exam on "${selectedTitle}" and the content is less then 300 words  and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
-//       `write the content in paragraph don't write anything like introduction and conclusion and understand on Journey To Pass Exam on "${selectedTitle}" and the content is in paragraph is less then 250 words and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
-//       `write the content in paragraph don't write anything like introduction and conclusion and understand and common heading on Benefits to pass exam on "${selectedTitle}" and the content is in paragraph is less then 250 words and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
-//       `write the content in paragraph don't write anything like introduction and conclusion and understand and common heading on Strategies for Effective Exam Preparation on "${selectedTitle}" and the content is in paragraph that is always less then 250 words and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format must have "in HTML tag format" and the all subheadings must have h2 tag`,
-//       `write the content in paragraph don't write anything like introduction and conclusion and understand and common heading on Pros on "${selectedTitle}" and the content is in paragraph that always must have less then 250 words and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
-//       `write the content in paragraph don't write anything like introduction and conclusion and understand and common heading on Cons on "${selectedTitle}" and the content is in paragraph that always must have less then 250 words and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
-//       `write the content in paragraph don't write anything like introduction and conclusion and understand and common heading on Exam Fees on "${selectedTitle}" and the content is in paragraph that always must have less then 200 words and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
-//       `write the content in paragraph don't write anything like introduction and conclusion and understand and common heading on Exam Salary on "${selectedTitle}" and the content is in paragraph that always must have less then 200 words and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
-//       `write the content in paragraph don't write anything like introduction and conclusion and understand and common heading on Important Thing you must to read on "${selectedTitle}" and the content is in paragraph that always must have is less then 250 words and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
-//       `write the content in paragraph don't write anything like introduction and conclusion and understand and common heading on Client testimonials on "${selectedTitle}" and the content that always must have is less then 250 words and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
-//       `write the content in paragraph don't write anything like introduction and conclusion and understand and common heading on Exam policies on "${selectedTitle}" and the content is in paragraph that always must have is less then 250 words and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
-//       `write the content in paragraph don't write anything like introduction and conclusion and understand and common heading on 5 FAQ's on "${selectedTitle}" and the content that always must have is less then 250 words and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
-//       `write the 7 to 10 website links don't write anything like heading on "${selectedTitle}" and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
-//     ];
-
-//     const responses: string[] = [];
-
-//    let uniqueHeadings: Set<string> = new Set();
-
-//     for (const prompt of prompts) {
-//       const { data } = await axios.post(
-//         openaiEndpoint,
-//         {
-//           model: "gpt-3.5-turbo-instruct",
-//           prompt,
-//           temperature: 0,
-//           max_tokens: 3896,
-//           top_p: 1,
-//           frequency_penalty: 0,
-//           presence_penalty: 0,
-//         },
-//         {
-//           headers: {
-//             "Content-Type": "application/json",
-//             Authorization: `Bearer ${apiKey}`,
-//           },
-//         }
-//       );
-
-//       const responseText = data.choices[0].text;
-
-//       // Extract headings (assumes headings start with "<h2>")
-//       const extractedHeadings = responseText.match(/<h2>(.*?)<\/h2>/g);
-//       if (extractedHeadings) {
-//         uniqueHeadings = new Set([...uniqueHeadings, ...extractedHeadings]);
-//       }
-//     }
-
-//     const uniqueArticle = response.replace(/<h2>(.*?)<\/h2>/g, (match, p1) => {
-//       return uniqueHeadings.has(match) ? match : "";
-//     });
-
-//     setResponse(uniqueArticle);
-//     setOriginalPrompt(selectedTitle);
-//     setArticleGenerated(true);
-//   } catch (error) {
-//     console.error("Error generating article:", error);
-//   }
-// };
-
-
-
-
-
 const generateArticleForTitle = async (selectedTitle: string) => {
   try {
     if (!selectedTitle.trim()) {
@@ -483,8 +409,8 @@ const generateArticleForTitle = async (selectedTitle: string) => {
       `write the content in paragraph don't write anything like introduction and conclusion and understand and common heading on 5 FAQ's on "${selectedTitle}" and the content that always must have is less then 250 words and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
       `write the 7 to 10 website links don't write anything like heading on "${selectedTitle}" and the data format always must have "in HTML tag format" that always must have 100% seo base and human written and the data format always must have "in HTML tag format" and the all subheadings must have h2 tag`,
     ];
-    let uniqueHeadings: Set<string> = new Set();
-    let uniqueContent: Set<string> = new Set();
+
+    const responses: string[] = [];
 
     for (const prompt of prompts) {
       const { data } = await axios.post(
@@ -506,30 +432,22 @@ const generateArticleForTitle = async (selectedTitle: string) => {
         }
       );
 
-      const responseText = data.choices[0].text;
-
-      // Extract headings (assumes headings start with "<h2>")
-      const extractedHeadings = responseText.match(/<h2>(.*?)<\/h2>/g);
-      if (extractedHeadings) {
-        uniqueHeadings = new Set([...uniqueHeadings, ...extractedHeadings]);
-      }
-
-      // Extract content
-      const extractedContent = responseText.replace(/<h2>.*?<\/h2>/g, '').trim();
-      uniqueContent.add(extractedContent);
+      responses.push(data.choices[0].text);
     }
 
-    const uniqueArticle = Array.from(uniqueHeadings)
-      .map((heading) => `<h2>${heading}</h2>`)
-      .join('') + Array.from(uniqueContent).join('');
-
-    setResponse(uniqueArticle);
+    setResponse(responses.join("\n"));
     setOriginalPrompt(selectedTitle);
     setArticleGenerated(true);
   } catch (error) {
     console.error("Error generating article:", error);
   }
 };
+
+
+
+
+
+
 
   
   return (
@@ -630,3 +548,7 @@ const generateArticleForTitle = async (selectedTitle: string) => {
 };
 
 export default ChatGptPrompt;
+
+
+
+
