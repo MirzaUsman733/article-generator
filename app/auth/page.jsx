@@ -3,6 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
+// import { getServerSession } from "next-auth";
+// import { redirect } from "next/navigation";
+// import { authOptions } from "../api/auth/[...nextauth]/route";
 export default function Auth() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,6 +17,9 @@ export default function Auth() {
   const [error, setError] = useState("");
 
   const router = useRouter();
+  // const session = await getServerSession(authOptions);
+
+  // if (session) redirect("/dashboard");
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
@@ -77,7 +84,6 @@ export default function Auth() {
         setError("Invalid User Data");
         return;
       }
-      // container.classList.remove('right-panel-active');
       router.replace("/");
     } catch (error) {
       console.log(error);
@@ -109,7 +115,7 @@ export default function Auth() {
                 <h1>Sign In</h1>
                 <input type="email" placeholder="Email" required onChange={(e) => setEmailSignIn(e.target.value)} />
                 <input type="password" placeholder="Password" required onChange={(e) => setPasswordSignIn(e.target.value)} />
-                <a href="#">Forgot your password?</a>
+                <Link href="#">Forgot your password?</Link>
                 {error && (
                   <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
                     {error}

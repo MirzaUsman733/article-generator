@@ -1,12 +1,18 @@
 'use client'
 import { useState, useEffect } from 'react';
-
+import { useSession } from "next-auth/react";
+import { useRouter } from 'next/navigation';
 export default function page() {
     const [userData, setUserData] = useState([]);
-
+    const { data: session, status } = useSession();
+    console.log(session)
+    const router = useRouter();
     useEffect(() => {
         const fetchData = async () => {
             try {
+                if (typeof window !== 'undefined' && status === "authenticated" && !session) {
+                    router.push('/auth');
+                }
                 const response = await fetch('/api/users', {
                     method: 'POST', // Assuming you are using a POST request for fetching all users
                 });
@@ -23,8 +29,12 @@ export default function page() {
         };
 
         fetchData();
-    }, []);
-
+    }, [session, status, router]);
+    if (session && session.user && session.user.role === 'user') {
+        // If the user is not an admin, redirect to "/"
+        router.push('/');
+        // Returning null to avoid rendering the component
+    }
     return (
         <div className="grid place-items-center h-screen">
             <div className="shadow-2xl shadow-slate-700 text-white p-8 bg-opacity-20 bg-zince-300/10 flex flex-col gap-2 my-6">
@@ -36,6 +46,9 @@ export default function page() {
                         </div>
                         <div>
                             Email: <span className="font-bold">{user.email}</span>
+                        </div>
+                        <div>
+                            Role: <span className="font-bold">{user.role}</span>
                         </div>
                     </div>
                 ))}

@@ -14,9 +14,13 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    role: { type: String, enum: ["user", "admin"], default: "user" },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user"
+    },
   },
-  {versionKey: false},
+  { versionKey: false },
   { timestamps: true }
 );
 
