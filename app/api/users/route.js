@@ -1,5 +1,3 @@
-// File: "users.js" in "app/api/users"
-
 import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/user";
 import { NextResponse } from "next/server";

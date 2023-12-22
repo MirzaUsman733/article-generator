@@ -54,6 +54,7 @@ export default function Auth() {
           name,
           email,
           password,
+          role: "user",
         }),
       });
 

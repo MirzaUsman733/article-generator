@@ -5,16 +5,15 @@ import { useRouter } from 'next/navigation';
 export default function page() {
     const [userData, setUserData] = useState([]);
     const { data: session, status } = useSession();
-    console.log(session)
     const router = useRouter();
     useEffect(() => {
         const fetchData = async () => {
             try {
-                if (typeof window !== 'undefined' && status === "authenticated" && !session) {
-                    router.push('/auth');
+                if (typeof window === 'undefined' && status !== "authenticated" && !session) {
+                    return router.push('/auth');
                 }
                 const response = await fetch('/api/users', {
-                    method: 'POST', // Assuming you are using a POST request for fetching all users
+                    method: 'POST', 
                 });
 
                 if (!response.ok) {
@@ -31,9 +30,7 @@ export default function page() {
         fetchData();
     }, [session, status, router]);
     if (session && session.user && session.user.role === 'user') {
-        // If the user is not an admin, redirect to "/"
         router.push('/');
-        // Returning null to avoid rendering the component
     }
     return (
         <div className="grid place-items-center h-screen">
